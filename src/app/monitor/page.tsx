@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import "./page.css";
 
 interface WebsiteStatus {
   url: string;
@@ -44,25 +45,36 @@ const Monitor = () => {
   }, []);  // Solo ejecuta este efecto al montar el componente
 
   return (
-    <div>
-      <h1>Website Monitor</h1>
-      <ul>
-        {status.map((site, index) => (
-          <li key={index}>
-            <strong>{site.url}</strong><br />
-            Status: {site.status}<br />
-            HTTP Code: {site.headers.statusCode}<br />
-            Response Time: {site.responseTime}<br />
-            Last checked: {site.lastChecked}<br />
-            {site.headers.contentType && (
-              <>
-                <strong>Content Type:</strong> {site.headers.contentType}<br />
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <div className="monitor-container">
+          <div className="main-content">
+            <h1 className="monitor-title">Website Monitor</h1>
+            <div className="monitor-grid">
+              {status.map((site, index) => (
+                <div key={index} className="monitor-card">
+                  <div className="mb-4">
+                    <h2 className="website-title">{site.url}</h2>
+                    <p className={site.status === 'Online' ? 'status-online' : 'status-offline'}>
+                      Status: {site.status}
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="detail-text"><strong>HTTP Code:</strong> {site.headers.statusCode}</p>
+                    <p className="detail-text"><strong>Response Time:</strong> {site.responseTime}</p>
+                    <p className="detail-text"><strong>Last checked:</strong> {site.lastChecked}</p>
+                    {site.headers.contentType && (
+                      <p className="detail-text"><strong>Content Type:</strong> {site.headers.contentType}</p>
+                    )}
+                  </div>
+                  {site.status === 'Offline' && (
+                    <div className="mt-4">
+                      <span className="error-tag">Error</span>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
   );
 };
 
