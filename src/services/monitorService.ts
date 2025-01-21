@@ -7,9 +7,12 @@ export class MonitorService {
   private websitesStatus: WebStatus[] = [];
   private websites: string[] = [
     'https://www.telefonica.com/es/',
-    'https://www.google.com/',
     'http://mipaginanoexiste.com/',
-    'https://www.telefonica100.com/time-capsuleasdasd',
+    'https://search.telefonica.com/',
+    'https://intranet.telefonica.com/es/',
+    'https://www.telefonica100.com/',
+    'https://imaginemonos.telefonica.com/',
+    'https://www.telefonica.es/es/',
   ];
 
   constructor() {
