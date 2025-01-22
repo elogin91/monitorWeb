@@ -60,11 +60,11 @@ export class MonitorService {
       // Solo enviamos mensaje de telegram si ha cambiado el estado
       if (previousStatus !== newStatus.status) {
           const message = `La web ${newStatus.url} ha cambiado su estado.\nEstado anterior: ${status.status}\nNuevo estado: ${newStatus.status}`;
-          /** await telegramService.sendMessage(message).then(() => {
+          await telegramService.sendMessage(message).then(() => {
                                                       console.log('Mensaje enviado a Telegram');
                                                     }).catch(error => {
                                                       console.error('Error al enviar mensaje:', error);
-                                                    });*/
+                                                    });
       }
     }
   }
