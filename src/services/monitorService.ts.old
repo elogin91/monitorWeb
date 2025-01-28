@@ -16,8 +16,7 @@ export class MonitorService {
   ];
 
   constructor() {
-    //this.initializeStatuses();
-    connectDB(); // Conectar a la base de datos
+    this.initializeStatuses();
     this.setupDailyCronJob();
   }
 
