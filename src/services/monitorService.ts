@@ -18,7 +18,6 @@ export class MonitorService {
 
   constructor() {
     connectDB(); // Conectar a la base de datos
-    //this.setupDailyCronJob();
     //this.setupInterval();
   }
 
@@ -142,15 +141,6 @@ export class MonitorService {
       }
 
       await telegramService.sendMessage(summary);
-  }
-
-  private setupDailyCronJob() {
-      cron.schedule('00 10 * * *', () => {
-        console.log('Enviando el resumen diario a las 12:00 p.m.');
-        this.sendDailySummary();
-      }, {
-        timezone: "Europe/Madrid"
-      });
   }
 
 }
