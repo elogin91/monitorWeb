@@ -17,7 +17,6 @@ export class MonitorService {
   ];
 
   constructor() {
-    //this.initializeStatuses();
     connectDB(); // Conectar a la base de datos
     this.setupDailyCronJob();
   }
@@ -28,10 +27,6 @@ export class MonitorService {
       console.log(statuses);
       return statuses;
   }
-    /**
-  getStatuses(): WebStatus[] {
-    return this.websitesStatus;
-  }*/
 
   // Refrescar los estados si es necesario
   async refreshStatusesIfNeeded() {
