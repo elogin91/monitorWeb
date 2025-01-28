@@ -18,8 +18,8 @@ export class MonitorService {
 
   constructor() {
     connectDB(); // Conectar a la base de datos
-    this.setupDailyCronJob();
-    this.setupInterval();
+    //this.setupDailyCronJob();
+    //this.setupInterval();
   }
 
   //Usa la variable estática para actualizar los estados de las webs cada minuto
