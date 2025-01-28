@@ -5,6 +5,7 @@ import cron from 'node-cron';
 import connectDB from '@/config/db'
 
 export class MonitorService {
+  private static refreshInterval: NodeJS.Timeout | null = null;
   private websites: string[] = [
     'https://www.telefonica.com/es/',
     'http://mipaginanoexiste.com/',
@@ -18,13 +19,18 @@ export class MonitorService {
   constructor() {
     connectDB(); // Conectar a la base de datos
     this.setupDailyCronJob();
-    if (!globalThis.refreshInterval) { // Evita que se inicie múltiples veces
-          globalThis.refreshInterval = setInterval(() => {
-            console.log("1. Refrescamos el estado de las webs cada minuto");
-            this.refreshStatuses(); // Aquí llamas a la función que actualiza los estados
-          }, 60000); // 60000 ms = 1 minuto
-      }
+    this.setupInterval();
   }
+
+  //Usa la variable estática para actualizar los estados de las webs cada minuto
+  private setupInterval() {
+      if (!MonitorService.refreshInterval) {  // Evita que se inicie múltiples veces
+        MonitorService.refreshInterval = setInterval(() => {
+          console.log("1. Refrescamos el estado de las webs cada minuto");
+          this.refreshStatuses();
+        }, 60000); // 60000 ms = 1 minuto
+      }
+    }
 
   // Obtener los estados desde MongoDB
   async getStatuses(): Promise<any> {
