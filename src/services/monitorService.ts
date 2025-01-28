@@ -133,7 +133,7 @@ export class MonitorService {
       }
   }
 
-  private async sendDailySummary(): Promise<void> {
+  async sendDailySummary(): Promise<void> {
       let summary = 'Resumen diario de las webs monitorizadas:\n\n';
 
       const statuses = await this.getStatuses();
