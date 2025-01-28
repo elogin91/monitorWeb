@@ -45,7 +45,7 @@ export class MonitorService {
           }
   }
 
-  private async refreshStatuses() {
+  async refreshStatuses() {
       console.log('4- Empiezo a refrescar estados de las siguientes páginas');
 
       for (const url of this.websites) {
