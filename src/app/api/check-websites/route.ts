@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { MonitorService } from '../../../services/monitorService';
+import { MonitorService } from '@/services/monitorService';
 
 const monitorService = new MonitorService();
 
