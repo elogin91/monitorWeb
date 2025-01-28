@@ -64,7 +64,7 @@ export class MonitorService {
           await webStatus.save();
         } else {
           // Si no existe, lo creamos
-          await WebStatusModel.create(newStatus);
+          await WebStatus.create(newStatus);
         }
 
         // Enviar notificación si el estado ha cambiado
