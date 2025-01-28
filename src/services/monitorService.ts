@@ -5,7 +5,6 @@ import cron from 'node-cron';
 import connectDB from '@/config/db'
 
 export class MonitorService {
-  //private websitesStatus: WebStatus[] = [];
   private websites: string[] = [
     'https://www.telefonica.com/es/',
     'http://mipaginanoexiste.com/',
@@ -19,42 +18,40 @@ export class MonitorService {
   constructor() {
     connectDB(); // Conectar a la base de datos
     this.setupDailyCronJob();
+    if (!globalThis.refreshInterval) { // Evita que se inicie múltiples veces
+          globalThis.refreshInterval = setInterval(() => {
+            console.log("1. Refrescamos el estado de las webs cada minuto");
+            this.refreshStatuses(); // Aquí llamas a la función que actualiza los estados
+          }, 60000); // 60000 ms = 1 minuto
+      }
   }
 
   // Obtener los estados desde MongoDB
   async getStatuses(): Promise<any> {
+      try {
       let statuses = await WebStatus.find({});
-      console.log(statuses);
+      console.log("2. He cogido los estados");
       return statuses;
-  }
-
-  // Refrescar los estados si es necesario
-  async refreshStatusesIfNeeded() {
-      const webStatuses = await this.getStatuses();
-      console.log ("1- He cogido los estados de las webs de la base de datos");
-      console.log (webStatuses);
-      const shouldUpdate = webStatuses.some((status: any) => !status.hasBeenCheckedRecently());
-
-      console.log ("2- Estoy comprobando si se debe updatear el estado de las webs ->");
-      console.log (shouldUpdate);
-
-    if (shouldUpdate) {
-        console.log ("3- Voy a refrescar el estado de las webs porque  es necesario");
-          await this.refreshStatuses();
-    }
+      } catch (error) {
+            console.error("2.bis Error al obtener los estados:", error);
+            throw error;
+          }
   }
 
   private async refreshStatuses() {
-      console.log('4- Empiezo a refrescar estados');
+      console.log('4- Empiezo a refrescar estados de las siguientes páginas');
 
       for (const url of this.websites) {
-          console.log('4.1- Comprobarremos lso estados de la URL:');
-          console.log(url);
+        console.log(url);
+
+        //Estado previo que tenía en la DB
         const webStatus = await WebStatus.findOne({ url });
         const previousStatus = webStatus ? webStatus.status : 'Unknown';
 
+        //Recolectamos el nuevo estado de la web
         const newStatus = await this.checkWebsiteStatus(url);
 
+        //Guardamos en la DB los nuevos datos recolectados
         if (webStatus) {
           // Si ya existe el estado, lo actualizamos
           webStatus.status = newStatus.status;
