@@ -24,4 +24,4 @@ const webStatusSchema: Schema = new Schema({
   lastChecked: { type: String, required: true },
 });
 
-export const WebStatusModel = mongoose.model<IWebStatus>('WebStatus', webStatusSchema);
+export const WebStatus = mongoose.model<IWebStatus>('WebStatus', webStatusSchema);

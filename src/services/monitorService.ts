@@ -2,6 +2,7 @@ import axios from 'axios';
 import { WebStatus } from '../models/webStatus';
 import telegramService from './telegramService';
 import cron from 'node-cron';
+import connectDB from '@/config/db'
 
 export class MonitorService {
   private websitesStatus: WebStatus[] = [];
