@@ -35,9 +35,10 @@ export class MonitorService {
   // Obtener los estados desde MongoDB
   async getStatuses(): Promise<any> {
       try {
-      let statuses = await WebStatus.find({});
-      console.log("2. He cogido los estados");
-      return statuses;
+          console.log("1. getStatuses");
+          let statuses = await WebStatus.find({});
+          console.log("2. He cogido los estados");
+          return statuses;
       } catch (error) {
             console.error("2.bis Error al obtener los estados:", error);
             throw error;
