@@ -5,7 +5,7 @@ const monitorService = new MonitorService();
 
 // Endpoint para devolver el estado actual de las webs
 export async function GET() {
-  await monitorService.refreshStatusesIfNeeded();// Esta responsabilidad deberia ir en el servidor
+  await monitorService.refreshStatuses();// Esta responsabilidad deberia ir en el servidor
   console.log("GET check-websites");
   const statuses = await monitorService.getStatuses();
   return NextResponse.json(statuses);

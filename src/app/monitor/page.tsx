@@ -38,7 +38,7 @@ const Monitor = () => {
     const intervalId = setInterval(() => {
       console.log("Ejecutando la llamada de actualización cada minuto");  // Verificar que se ejecuta
       fetchStatus();
-    }, 3600000); // 60,000 ms = 1 minuto
+    }, 3600000); // 60,000 ms = 1 minuto 3600000
 
     // Limpiamos el intervalo cuando el componente se desmonte
     return () => clearInterval(intervalId);
