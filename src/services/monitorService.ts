@@ -20,7 +20,7 @@ export class MonitorService {
     connectDB(); // Conectar a la base de datos
     //this.setupInterval();
   }
-
+/*
   //Usa la variable estática para actualizar los estados de las webs cada minuto
   private setupInterval() {
       if (!MonitorService.refreshInterval) {  // Evita que se inicie múltiples veces
@@ -30,7 +30,7 @@ export class MonitorService {
         }, 60000); // 60000 ms = 1 minuto
       }
     }
-
+*/
   // Obtener los estados desde MongoDB
   async getStatuses(): Promise<any> {
       try {

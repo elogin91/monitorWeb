@@ -41,7 +41,7 @@ const Monitor = () => {
     }, 3600000); // 60,000 ms = 1 minuto 3600000
 
     // Limpiamos el intervalo cuando el componente se desmonte
-    return () => clearInterval(intervalId);
+    //return () => clearInterval(intervalId);
   }, []);  // Solo ejecuta este efecto al montar el componente
 
   return (
