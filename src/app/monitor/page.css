@@ -46,7 +46,11 @@
 
 /* Etiqueta de error (offline) */
 .error-tag {
-  @apply inline-block px-3 py-1 text-sm font-semibold text-red-800 bg-red-100 rounded-full;
+  @apply inline-block px-3 py-1 text-sm font-semibold text-red-800 bg-red-100 rounded-full mt-4 mx-4;
+}
+/* Etiqueta de error (response) */
+.error-response-tag {
+  @apply inline-block px-3 py-1 text-sm font-semibold text-orange-800 bg-orange-100 rounded-full mt-4 mx-4;
 }
 
 /* Disposición del grid */

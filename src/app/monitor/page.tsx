@@ -62,10 +62,11 @@ const Monitor = () => {
                       <p className="detail-text"><strong>Content Type:</strong> {site.headers.contentType}</p>
                     )}
                   </div>
-                  {site.status === 'Offline' && (
-                    <div className="mt-4">
-                      <span className="error-tag">Error</span>
-                    </div>
+                  {site.status === 'Offline - Error de red o timeout' && (
+                      <span className="error-tag">Connection error</span>
+                  )}
+                   {site.headers.statusCode !== '200' && (
+                      <span className="error-response-tag">Response error</span>
                   )}
                 </div>
               ))}

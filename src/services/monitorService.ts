@@ -109,9 +109,10 @@ export class MonitorService {
       const responseTime = `${endTime - startTime} ms`;
 
       if (error.response) {
+        const status = error.response.status === 401 ? 'Online' : 'Offline';
         return {
           url,
-          status: 'Offline',
+          status,
           headers: {
             statusCode: error.response.status,
             date: error.response.headers['date'] || 'N/A',
